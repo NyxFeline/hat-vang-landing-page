@@ -3,6 +3,8 @@ import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import Mission from "@/components/Mission";
 import Products from "@/components/Products";
+import CTABanner from "@/components/CTABanner";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -13,9 +15,9 @@ export default function Home() {
         <Stats />
         <Mission />
         <Products />
-        {/* Tạm thời để có chỗ cuộn, xóa khi làm CTA Banner */}
-        <div className="h-[40vh]" />
+        <CTABanner />
       </main>
+      <Footer />
     </>
   );
 }
