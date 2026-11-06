@@ -1,5 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Stats from "@/components/Stats";
+import Mission from "@/components/Mission";
 
 export default function Home() {
   return (
@@ -7,8 +9,10 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        {/* Tạm thời để có chỗ cuộn, xóa khi làm các section sau */}
-        <div className="h-screen pt-16" />
+        <Stats />
+        <Mission />
+        {/* Tạm thời để có chỗ cuộn, xóa khi làm Products */}
+        <div className="h-[60vh]" />
       </main>
     </>
   );
