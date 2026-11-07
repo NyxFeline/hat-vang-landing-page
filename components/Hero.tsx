@@ -1,10 +1,16 @@
 "use client";
 
+import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Play } from "lucide-react";
-import { MotionConfig, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import SearchBar from "@/components/SearchBar";
+import VideoModal from "@/components/VideoModal";
+
+// TODO: thay bằng ID video YouTube thật (phần sau "v=" trong link).
+// Nhớ kiểm tra video cho phép nhúng (embed), nếu không iframe sẽ báo lỗi.
+const HERO_VIDEO_ID = "PXxDB-gYhWY";
 
 /**
  * Hiệu ứng "trượt từ dưới lên" dùng chung cho các khối chữ trong Hero.
@@ -17,6 +23,16 @@ const slideUp = (delay = 0) => ({
 });
 
 export default function Hero() {
+    const [videoOpen, setVideoOpen] = useState(false);
+    const triggerRef = useRef<HTMLButtonElement>(null);
+
+    // useCallback: giữ nguyên tham chiếu hàm để effect trong VideoModal không chạy lại
+    const closeVideo = useCallback(() => {
+        setVideoOpen(false);
+        // Trả focus về nút "Watch Video" (accessibility)
+        triggerRef.current?.focus();
+    }, []);
+
     return (
         // reducedMotion="user": tôn trọng cài đặt "giảm chuyển động" của hệ điều hành
         // (bỏ các animation di chuyển, chỉ giữ fade) - điểm cộng về accessibility.
@@ -55,9 +71,11 @@ export default function Hero() {
                                 Shop the harvest
                             </Link>
 
-                            {/* TODO (Ngày 10): bấm vào sẽ mở Modal Video */}
                             <button
+                                ref={triggerRef}
                                 type="button"
+                                onClick={() => setVideoOpen(true)}
+                                aria-haspopup="dialog"
                                 className="flex items-center gap-2 rounded-full border border-ink/15 bg-white px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 ease-out hover:scale-105 hover:border-primary hover:text-primary active:scale-95"
                             >
                                 <Play className="h-4 w-4" aria-hidden />
@@ -95,6 +113,17 @@ export default function Hero() {
                     </div>
                 </div>
                 <SearchBar />
+
+                {/* AnimatePresence giữ modal trong DOM đủ lâu để chạy animation đóng (exit) */}
+                <AnimatePresence>
+                    {videoOpen && (
+                        <VideoModal
+                            videoId={HERO_VIDEO_ID}
+                            title="Hạt Vàng - rice farming video"
+                            onClose={closeVideo}
+                        />
+                    )}
+                </AnimatePresence>
             </section>
         </MotionConfig>
     );

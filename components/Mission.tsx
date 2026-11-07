@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import MissionCards, { type MissionCardData } from "@/components/MissionCards";
 
-const MISSION_CARDS = [
+const MISSION_CARDS: MissionCardData[] = [
     {
         title: "Paddy stewardship",
         description:
@@ -48,35 +48,9 @@ export default function Mission() {
                     </Link>
                 </Reveal>
 
-                {/* 3 thẻ (phải): mobile xếp dọc, từ sm trở lên xếp ngang */}
-                <Reveal
-                    delay={0.15}
-                    className="flex flex-col gap-4 sm:flex-row lg:col-span-3"
-                >
-                    {MISSION_CARDS.map((card) => (
-                        <article
-                            key={card.title}
-                            className="relative h-72 overflow-hidden rounded-3xl shadow-lg sm:h-104 sm:flex-1"
-                        >
-                            <Image
-                                src={card.image}
-                                alt={card.alt}
-                                fill
-                                sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 100vw"
-                                className="object-cover"
-                            />
-
-                            {/* Lớp gradient đen ở đáy để chữ trắng nổi lên */}
-                            <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/30 to-transparent" />
-
-                            <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                                <h3 className="font-heading text-xl">{card.title}</h3>
-                                <p className="mt-2 text-sm leading-relaxed text-white/85">
-                                    {card.description}
-                                </p>
-                            </div>
-                        </article>
-                    ))}
+                {/* 3 thẻ mở rộng (phải) */}
+                <Reveal delay={0.15} className="lg:col-span-3">
+                    <MissionCards cards={MISSION_CARDS} />
                 </Reveal>
             </div>
         </section>
