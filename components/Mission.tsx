@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 
 const MISSION_CARDS = [
     {
@@ -30,7 +31,7 @@ export default function Mission() {
         <section id="about" className="py-20 md:py-28">
             <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:px-6 lg:grid-cols-5 lg:gap-12">
                 {/* Cột chữ (trái) */}
-                <div className="lg:col-span-2">
+                <Reveal className="lg:col-span-2">
                     <h2 className="font-heading text-3xl leading-tight text-ink md:text-4xl lg:text-5xl">
                         Great rice starts with great growers.
                     </h2>
@@ -45,10 +46,13 @@ export default function Mission() {
                     >
                         Meet the farmers
                     </Link>
-                </div>
+                </Reveal>
 
                 {/* 3 thẻ (phải): mobile xếp dọc, từ sm trở lên xếp ngang */}
-                <div className="flex flex-col gap-4 sm:flex-row lg:col-span-3">
+                <Reveal
+                    delay={0.15}
+                    className="flex flex-col gap-4 sm:flex-row lg:col-span-3"
+                >
                     {MISSION_CARDS.map((card) => (
                         <article
                             key={card.title}
@@ -73,7 +77,7 @@ export default function Mission() {
                             </div>
                         </article>
                     ))}
-                </div>
+                </Reveal>
             </div>
         </section>
     );
