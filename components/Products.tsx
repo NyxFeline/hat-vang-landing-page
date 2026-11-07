@@ -3,6 +3,7 @@
 import { MotionConfig, motion, type Variants } from "framer-motion";
 import ProductCard, { type Product } from "@/components/ProductCard";
 import Reveal from "@/components/Reveal";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const PRODUCTS: Product[] = [
     {
@@ -57,13 +58,11 @@ const PRODUCTS: Product[] = [
     },
 ];
 
-// Container chỉ điều phối: mỗi thẻ con trễ hơn thẻ trước 0.12s (stagger).
 const container: Variants = {
     hidden: {},
     show: { transition: { staggerChildren: 0.12 } },
 };
 
-// y nhỏ (20px) < pb-6 (24px) của carousel: tránh khung overflow-x-auto sinh thanh cuộn dọc.
 const item: Variants = {
     hidden: { opacity: 0, y: 20, scale: 0.95 },
     show: {
@@ -75,19 +74,17 @@ const item: Variants = {
 };
 
 export default function Products() {
+    const { t } = useLanguage();
     return (
         <MotionConfig reducedMotion="user">
             <section id="products" className="py-20 md:py-28">
                 <div className="mx-auto max-w-6xl px-4 md:px-6">
                     <Reveal>
                         <h2 className="font-heading text-3xl text-ink md:text-4xl lg:text-5xl">
-                            This week&apos;s rice selection.
+                            {t("productsTitle")}
                         </h2>
                     </Reveal>
 
-                    {/* Carousel: -mx-4 px-4 cho thẻ cuộn tới sát mép màn hình trên mobile.
-                        Chỉ container theo dõi viewport; các thẻ con tự chạy theo variants,
-                        nên thẻ nằm ngoài tầm nhìn ngang (thẻ 4, 5) vẫn hiện đúng thứ tự. */}
                     <motion.div
                         variants={container}
                         initial="hidden"

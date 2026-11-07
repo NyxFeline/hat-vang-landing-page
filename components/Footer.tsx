@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
-import { Wheat } from "lucide-react";
+import Image from "next/image";
 import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const FOOTER_LINKS = [
     {
@@ -25,28 +28,36 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
+    const { t } = useLanguage();
     return (
         <footer className="border-t border-ink/10">
             <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
                 <div className="grid gap-10 lg:grid-cols-[2fr_3fr]">
-                    {/* Thương hiệu */}
                     <div>
                         <Link href="#home" className="flex items-center gap-2">
-                            <Wheat className="h-6 w-6 text-primary" aria-hidden />
+                            <Image
+                                src="/images/logo.png"
+                                alt="Hạt Vàng"
+                                width={40}
+                                height={40}
+                                className="h-10 w-10 object-contain"
+                            />
                             <span className="font-heading text-2xl text-ink">Hạt Vàng</span>
                         </Link>
                         <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink/60">
-                            Connecting Vietnamese rice farmers with families who value
-                            flavour, nutrition, and fairness.
+                            {t("footerDescription")}
                         </p>
                     </div>
 
-                    {/* Các cột link: mobile 2 cột, từ sm trở lên 3 cột */}
                     <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
                         {FOOTER_LINKS.map((group) => (
                             <div key={group.title}>
                                 <h3 className="font-heading text-base text-ink">
-                                    {group.title}
+                                    {group.title === "Shop"
+                                        ? t("shop")
+                                        : group.title === "Company"
+                                            ? t("company")
+                                            : t("support")}
                                 </h3>
                                 <ul className="mt-4 space-y-3">
                                     {group.links.map((label) => (
@@ -65,10 +76,9 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Dòng cuối: copyright + mạng xã hội */}
                 <div className="mt-12 flex flex-col gap-4 border-t border-ink/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-sm text-ink/50">
-                        © 2026 Hạt Vàng. All rights reserved.
+                        © 2026 Hạt Vàng. {t("allRightsReserved")}
                     </p>
 
                     <ul className="flex items-center gap-3">

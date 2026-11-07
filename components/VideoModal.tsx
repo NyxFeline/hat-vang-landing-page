@@ -10,20 +10,12 @@ type VideoModalProps = {
     onClose: () => void;
 };
 
-/**
- * Modal video: nền đen mờ (backdrop-blur-xl) + khung YouTube iframe.
- * Component chỉ được mount khi modal mở (xem AnimatePresence trong Hero),
- * nên iframe không tải gì cho tới khi người dùng bấm "Watch Video".
- * Đóng được bằng: nút X, bấm ra ngoài, hoặc phím Esc.
- */
 export default function VideoModal({ videoId, title, onClose }: VideoModalProps) {
     const closeRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
-        // Đưa focus vào modal để người dùng bàn phím/screen reader biết nó vừa mở
         closeRef.current?.focus();
 
-        // Khóa cuộn trang phía sau trong lúc modal mở
         const previousOverflow = document.body.style.overflow;
         document.body.style.overflow = "hidden";
 
@@ -40,7 +32,6 @@ export default function VideoModal({ videoId, title, onClose }: VideoModalProps)
 
     return (
         <motion.div
-            // z-100 để nằm trên Navbar sticky và Search Bar nổi
             className="fixed inset-0 z-100 flex items-center justify-center bg-black/70 p-4 backdrop-blur-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -57,7 +48,6 @@ export default function VideoModal({ videoId, title, onClose }: VideoModalProps)
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                // Chặn click trong khung video làm đóng modal
                 onClick={(e) => e.stopPropagation()}
             >
                 <button

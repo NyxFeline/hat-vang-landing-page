@@ -1,13 +1,11 @@
 @import "tailwindcss";
 
 @theme inline {
-    /* Màu theo Design System */
     --color-cream: #fcfbf6;
     --color-primary: #15803d;
     --color-accent: #eab308;
     --color-ink: #1f2937;
 
-    /* Font (biến lấy từ next/font trong layout.tsx) */
     --font-heading: var(--font-playfair), serif;
     --font-body: var(--font-inter), sans-serif;
 }

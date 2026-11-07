@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import { LanguageProvider } from "@/components/LanguageProvider";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -18,6 +19,11 @@ export const metadata: Metadata = {
   title: "Hạt Vàng - Gạo Việt chất lượng cao",
   description:
     "Gạo sạch từ những người nông dân Việt Nam, giao tận bếp nhà bạn.",
+  icons: {
+    icon: "/images/logo.png",
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -26,7 +32,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="vi"
       className={`${playfair.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }
