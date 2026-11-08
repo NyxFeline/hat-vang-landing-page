@@ -123,7 +123,8 @@ Hạt Vàng combines two complementary design directions:
 | [React Hook Form](https://react-hook-form.com/)           | Form handling and validation   |
 | [Lucide React](https://lucide.dev/)                       | Interface icons                |
 | [React Icons](https://react-icons.github.io/react-icons/) | Additional icons               |
-| [Vercel](https://vercel.com/)                             | Deployment platform            |
+| [Netlify](https://www.netlify.com/)                       | Deployment platform            |
+| [Vercel](https://vercel.com/)                             | Alternative deployment platform |
 
 ## 📂 Project Structure
 
@@ -245,19 +246,41 @@ The application will automatically reload when you make changes to the source co
 
 ## 🌐 Deployment
 
-The project is designed to be deployed on [Vercel](https://vercel.com/).
+The project can be deployed on [Netlify](https://www.netlify.com/) or
+[Vercel](https://vercel.com/). No environment variables are required for the
+current version.
 
-To deploy:
+### Deploy with Netlify
 
 1. Push the project to GitHub.
-2. Sign in to Vercel using your GitHub account.
-3. Import the Hạt Vàng repository.
-4. Configure project settings if necessary.
-5. Deploy the application.
+2. Sign in to Netlify and choose **Add new site** → **Import an existing project**.
+3. Connect the GitHub repository
+   [`NyxFeline/hat-vang-landing-page`](https://github.com/NyxFeline/hat-vang-landing-page).
+4. Use these build settings:
 
-Once deployment is complete, Vercel will provide a public URL for the website.
+   | Setting | Value |
+   | --- | --- |
+   | Build command | `npm run build` |
+   | Publish directory | `.next` |
+   | Node version | `20` or later |
 
-For more information, visit the [Next.js Deployment Documentation](https://nextjs.org/docs/app/building-your-application/deploying).
+5. Click **Deploy site**.
+
+Netlify detects the Next.js project and uses its Next.js runtime for pages,
+images, and other framework features. Every new commit pushed to the selected
+branch will trigger a new deployment.
+
+### Deploy with Vercel
+
+1. Push the project to GitHub.
+2. Sign in to Vercel with GitHub.
+3. Import the
+   [`NyxFeline/hat-vang-landing-page`](https://github.com/NyxFeline/hat-vang-landing-page)
+   repository.
+4. Keep the default Next.js settings and click **Deploy**.
+
+For more information, see the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying)
+and [Netlify's Next.js documentation](https://docs.netlify.com/frameworks/next-js/overview/).
 
 ## 🖼️ Image Sources & Licensing
 
