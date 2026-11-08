@@ -5,12 +5,24 @@
     --color-primary: #15803d;
     --color-accent: #eab308;
     --color-ink: #1f2937;
+    --color-sand: #f4f1e6;
+    --color-forest: #14532d;
 
     --font-heading: var(--font-playfair), serif;
     --font-body: var(--font-inter), sans-serif;
 }
 
 @layer base {
+    html {
+        scroll-padding-top: 4rem;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
+
     body {
         background-color: var(--color-cream);
         color: var(--color-ink);
