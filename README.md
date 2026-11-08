@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="[YOUR_LIVE_DEMO_URL]"><strong>Live Demo</strong></a> ·
+  <a href="https://hat-vang.netlify.app/"><strong>Live Demo</strong></a> ·
   <a href="https://github.com/NyxFeline/hat-vang-landing-page.git"><strong>Source Code</strong></a>
 </p>
 
